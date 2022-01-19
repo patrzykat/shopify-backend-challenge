@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products/${selected.name}`)
+      .get(`https://shopify-challenge-backend-ilya.herokuapp.com/products/${selected.name}`)
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);
