@@ -75,6 +75,7 @@ router.delete("/:sku", getProductBySKU, async (req, res) => {
   }
 });
 
+// MIDDLEWARE: Get the product with specific SKU
 async function getProductBySKU(req, res, next) {
   let product;
   try {
