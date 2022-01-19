@@ -3,6 +3,7 @@ import Table from "./components/table";
 import SelectMenu from "./components/selectMenu";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ProductType } from "./interfaces";
 
 const categories = [
   {
@@ -29,7 +30,7 @@ const categories = [
 
 function App() {
   const [selected, setSelected] = useState(categories[0]);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     axios

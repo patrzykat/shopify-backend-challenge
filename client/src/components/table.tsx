@@ -1,16 +1,17 @@
-import { useEffect } from "react";
+import { useState } from "react";
+import { ProductType } from "../interfaces";
 import axios from "axios";
 
-export default function Table({ products }: any) {
+export default function Table({ products }: { products: ProductType[] }) {
+  const [deleted, setDeleted] = useState(0);
+
   const onDelete = (sku: string) => {
     axios
       .delete(
         `https://shopify-challenge-backend-ilya.herokuapp.com/products/${sku}`
       )
-      .then((res) => console.log(`Item with sku: ${sku} has been deleted`));
+      .then((res) => setDeleted(deleted + 1));
   };
-
-  useEffect(() => console.log("refresh"), [products]);
 
   return (
     <div className="flex flex-col m-20">
@@ -19,7 +20,7 @@ export default function Table({ products }: any) {
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
-                <tr>
+                <tr key={deleted}>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -56,7 +57,7 @@ export default function Table({ products }: any) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {products.map((product: any) => (
+                {products.map((product: ProductType) => (
                   <tr key={product.sku}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
