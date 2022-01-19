@@ -21,6 +21,10 @@ const categories = [
     id: 4,
     name: "FINNALA",
   },
+  {
+    id: 5,
+    name: "UPPLAND",
+  },
 ];
 
 function App() {
@@ -29,7 +33,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`https://shopify-challenge-backend-ilya.herokuapp.com/products/${selected.name}`)
+      .get(
+        `https://shopify-challenge-backend-ilya.herokuapp.com/products/${selected.name}`
+      )
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }, [selected]);

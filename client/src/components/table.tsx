@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import axios from "axios";
 
 export default function Table({ products }: any) {
@@ -8,6 +9,8 @@ export default function Table({ products }: any) {
       )
       .then((res) => console.log(`Item with sku: ${sku} has been deleted`));
   };
+
+  useEffect(() => console.log("refresh"), [products]);
 
   return (
     <div className="flex flex-col m-20">
@@ -74,11 +77,6 @@ export default function Table({ products }: any) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {product.family}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        {product.quantity}
-                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
